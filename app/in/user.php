@@ -1,3 +1,8 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
 <?php
 $connection = pg_connect("host=195.88.209.17 port=5432 dbname=makeup user=postgres password=12345_Vet");
 
@@ -27,3 +32,5 @@ if ($result != 0) {
     }
 }
 ?>
+</body>
+</html>
