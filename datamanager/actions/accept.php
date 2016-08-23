@@ -12,10 +12,13 @@ switch ($_POST['type']) {
         }
         break;
     case 'hairstyle':
-        $result = pg_query($connection, "UPDATE hairstyle SET published='t' WHERE id='$id'");
+        $lenght = $_POST['lenght'];
+        $htype = $_POST['htype'];
+        $for = $_POST['for'];
+        $result = pg_query($connection, "UPDATE hairstyle SET hlenght='$lenght', htype='$htype', hfor='$for', published='t' WHERE id='$id'");
         if ($result) {
             pg_query($connection, "UPDATE moderate SET accepted=accepted+1 WHERE id='$mid'");
-            print "<html><head><meta http-equiv='refresh' content='0;URL=http://195.88.209.17/datamanager/manicure.php?mid=$mid'></head></html>";
+            print "<html><head><meta http-equiv='refresh' content='0;URL=http://195.88.209.17/datamanager/hairstyle.php?mid=$mid'></head></html>";
         }
         break;
     case 'makeup':

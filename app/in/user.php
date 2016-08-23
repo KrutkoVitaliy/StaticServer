@@ -1,11 +1,5 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
 <?php
 $connection = pg_connect("host=195.88.209.17 port=5432 dbname=makeup user=postgres password=12345_Vet");
-
 $email = $_GET['email'];
 $search = pg_query($connection, "SELECT * FROM profiles WHERE email='$email'");
 $result = pg_fetch_all($search);
@@ -24,17 +18,13 @@ if ($result != 0) {
     $getId = pg_query($connection, "SELECT * FROM profiles ORDER BY id DESC");
     $id = pg_fetch_row($getId);
     if (isset($_GET['name']) and isset($_GET['email']) and isset($_GET['photo'])) {
-        $names = explode("%20", $_GET['name']);
+        $names = explode(" ", $_GET['name']);
+        print $names[0];
+        print $names[1];
         $email = $_GET['email'];
         $photo = $_GET['photo'];
         $addUser = pg_query($connection, "INSERT INTO profiles (id, first_name, last_name, email, photo)
     VALUES (($id[0] + 1),'" . $names[0] . "','" . $names[1] . "','" . $email . "','" . $photo . "')");
     }
-    print $names[0]." ";
-    print $names[1]."<br>";
-    print $email."<br>";
-    print $addUser."<br>";
 }
 ?>
-</body>
-</html>

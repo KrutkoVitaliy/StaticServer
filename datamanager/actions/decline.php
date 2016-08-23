@@ -15,7 +15,7 @@ switch ($_POST['type']) {
         $result = pg_query($connection, "DELETE FROM hairstyle WHERE id='$id'");
         if ($result) {
             pg_query($connection, "UPDATE moderate SET declined=declined+1 WHERE id='$mid'");
-            print "<html><head><meta http-equiv='refresh' content='0;URL=http://195.88.209.17/datamanager/manicure.php?mid=$mid'></head></html>";
+            print "<html><head><meta http-equiv='refresh' content='0;URL=http://195.88.209.17/datamanager/hairstyle.php?mid=$mid'></head></html>";
         }
         break;
     case 'makeup':
