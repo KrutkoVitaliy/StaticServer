@@ -19,7 +19,21 @@ $row = pg_fetch_row($query);
                            height: 250px;
                            border-radius: 125px;
                            background-size: 100%;
-                           background-image: url("http://195.88.209.17/storage/images/<?php print $row[0]; ?>")'/>
+                           background-image: url("http://195.88.209.17/storage/images/<?php print $row[0]; ?>")'/><br><br>
+                <input type='text' name='name' placeholder='Имя' size='60'
+                       style='
+                           border-radius: 2px;
+                           background-color: #EEEEEE;
+                           border: 1px solid #CCCCCC;
+                           height: 32px;
+                           padding-left: 10px;'/><br><br>
+                <input type="text" name="lastname" placeholder="Фамилия" size='60'
+                       style='
+                           border-radius: 2px;
+                           background-color: #EEEEEE;
+                           border: 1px solid #CCCCCC;
+                           height: 32px;
+                           padding-left: 10px;'/><br><br>
             </td>
         </tr>
         <tr>
