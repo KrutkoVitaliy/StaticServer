@@ -13,6 +13,9 @@ if ($result != 0) {
         ',"likes":"' . $output[7] . '"' . ',"firstName":"' . $output[8] . '"' . ',"phoneNumber":"' . $output[9] . '"' .
         ',"gplus":"' . $output[18] . '"' .',"facebook":"' . $output[19] . '"' .',"vkontakte":"' . $output[20] . '"' .
         ',"instagram":"' . $output[21] . '"' .',"odnoklassniki":"' . $output[22] . '"' .
+        ',"makeupServices":"' . $output[23] . '"' .',"makeupCosts":"' . $output[24] . '"' .
+        ',"manicureServices":"' . $output[25] . '"' .',"manicureCosts":"' . $output[26] . '"' .
+        ',"hairstyleServices":"' . $output[27] . '"' .',"hairstyleCosts":"' . $output[28] . '"' .
         ',"registrationDate":"' . $output[10] . '"' . ',"skills":"' . $output[11] . '"' . ',"email.":"' . $output[12] . '"},';
     $str = substr($str, 0, -1);
     print "[".$str."]";
