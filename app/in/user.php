@@ -28,8 +28,8 @@ if ($result != 0) {
         print $names[1];
         $email = $_GET['email'];
         $photo = $_GET['photo'];
-        $addUser = pg_query($connection, "INSERT INTO profiles (id, first_name, last_name, email, photo)
-    VALUES (($id[0] + 1),'" . $names[0] . "','" . $names[1] . "','" . $email . "','" . $photo . "')");
+        $addUser = pg_query($connection, "INSERT INTO profiles (id, first_name, last_name, email, photo, likes, followers)
+    VALUES (($id[0] + 1),'" . $names[0] . "','" . $names[1] . "','" . $email . "','" . $photo . "',0,0)");
     }
 }
 ?>

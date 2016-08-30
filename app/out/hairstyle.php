@@ -25,6 +25,7 @@ while (true) {
                 ',"screen1":"' . $row[5] . '"' . ',"screen2":"' . $row[6] . '"' . ',"screen3":"' . $row[7] . '"' .
                 ',"screen4":"' . $row[8] . '"' . ',"screen5":"' . $row[9] . '"' . ',"screen6":"' . $row[10] . '"' .
                 ',"screen7":"' . $row[11] . '"' . ',"screen8":"' . $row[12] . '"' . ',"screen9":"' . $row[13] . '"' .
+                ',"length":"' . $row[18] . '"' . ',"type":"' . $row[19] . '"' . ',"for":"' . $row[20] . '"' .
                 ',"likes":"' . $row[14] . '"' . ',"uploadDate":"' . $row[15] . '"' . ',"published":"' . $row[16] . '"},';
         }
         $str = substr($str, 0, -1);
