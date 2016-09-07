@@ -201,7 +201,7 @@ switch ($_POST['type']) {
                     </tr>
                 </table>
                 <br>
-                <input required id="input" type="text" name="tags" placeholder="Теги (Английский, через запятую)"
+                <input id="input" type="text" name="tags" placeholder="Теги (Английский, через запятую)"
                        size="100" value="<?php print $row[2]; ?>"/>
                 <div style="padding-bottom:8px;"></div>
                 <select name="shape" style="width: 75%;" required>
