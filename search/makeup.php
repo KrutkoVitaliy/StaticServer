@@ -10,14 +10,23 @@ $flag = "t";
 $limit = 100;
 $offset = $position * 100 - 100;
 
+$date = date("dmy") . date("His");
+
 $requestHashTags = explode(",", $request);
 print "[";
 for ($i = 0; $i < count($requestHashTags); $i++) {
     $result = pg_query($connection, "
 SELECT *
 FROM makeup
-WHERE published = '$flag'
+WHERE upload_date < '$date' AND published = '$flag'
 AND tags LIKE '%$requestHashTags[$i]%'
+AND colors LIKE '%$colors'
+AND eye_color LIKE '%$eyeColor%'
+AND difficult LIKE '%$difficult%'
+AND occasion LIKE '%$occasion%'
+
+OR upload_date < '$date' AND published = '$flag'
+AND tags_ru LIKE '%$requestHashTags[$i]%'
 AND colors LIKE '%$colors'
 AND eye_color LIKE '%$eyeColor%'
 AND difficult LIKE '%$difficult%'
@@ -26,7 +35,7 @@ ORDER BY id DESC
 LIMIT $limit
 OFFSET $offset
 ");
-    $count = count(pg_fetch_all(pg_query($connection, "SELECT * FROM makeup WHERE published = '$flag' AND tags LIKE '%$requestHashTags[$i]%' AND colors LIKE '%$colors' AND eye_color LIKE '%$eyeColor%' AND difficult LIKE '%$difficult%' AND occasion LIKE '%$occasion%'")));
+    $count = count(pg_fetch_all(pg_query($connection, "SELECT * FROM makeup WHERE upload_date < '$date' AND published = '$flag' AND tags LIKE '%$requestHashTags[$i]%' AND colors LIKE '%$colors' AND eye_color LIKE '%$eyeColor%' AND difficult LIKE '%$difficult%' AND occasion LIKE '%$occasion%' OR upload_date < '$date' AND published = '$flag' AND tags_ru LIKE '%$requestHashTags[$i]%' AND colors LIKE '%$colors' AND eye_color LIKE '%$eyeColor%' AND difficult LIKE '%$difficult%' AND occasion LIKE '%$occasion%'")));
     while ($row = pg_fetch_row($result)) {
         $profile = pg_query($connection, "SELECT  photo, first_name, last_name FROM profiles WHERE id='$row[1]'");
         $profileRow = pg_fetch_row($profile);
@@ -42,6 +51,7 @@ OFFSET $offset
             ',"occasion":"' . $row[6] . '"' .
             ',"difficult":"' . $row[7] . '"' .
             ',"tags":"' . $row[8] . '"' .
+            ',"tagsRu":"' . $row[21] . '"' .
             ',"published":"' . $row[9] . '"' .
             ',"screen0":"' . $row[10] . '"' .
             ',"screen1":"' . $row[11] . '"' .

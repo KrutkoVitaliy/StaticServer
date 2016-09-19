@@ -48,7 +48,7 @@ while ($row2 = pg_fetch_row($result2)) {
     print $row2[9]."_+_<br>";
 }*/
 
-$result3 = pg_query($connection, "SELECT screen0,screen1,screen2,screen3,screen4,screen5,screen6,screen7,screen8,screen9 FROM makeup WHERE published='t'");
+/*$result3 = pg_query($connection, "SELECT screen0,screen1,screen2,screen3,screen4,screen5,screen6,screen7,screen8,screen9 FROM makeup WHERE published='t'");
 while ($row3 = pg_fetch_row($result3)) {
     download_remote_file("http://195.88.209.17/storage/images/" . $row3[0], "/var/www/html/storage/temp/makeup/" . $row3[0]);
     download_remote_file("http://195.88.209.17/storage/images/" . $row3[1], "/var/www/html/storage/temp/makeup/" . $row3[1]);
@@ -70,7 +70,7 @@ while ($row3 = pg_fetch_row($result3)) {
     print $row3[7]."_+_<br>";
     print $row3[8]."_+_<br>";
     print $row3[9]."_+_<br>";
-}
+}*/
 
 function download_remote_file($file_url, $save_to)
 {

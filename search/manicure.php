@@ -9,14 +9,22 @@ $flag = "t";
 $limit = 100;
 $offset = $position * 100 - 100;
 
+$date = date("dmy") . date("His");
+
 $requestHashTags = explode(",", $request);
 print "[";
 for ($i = 0; $i < count($requestHashTags); $i++) {
     $result = pg_query($connection, "
 SELECT *
 FROM manicure
-WHERE published = '$flag'
+WHERE upload_date < '$date' AND published = '$flag'
 AND tags LIKE '%$requestHashTags[$i]%'
+AND colors LIKE '%$colors'
+AND shape LIKE '%$shape%'
+AND design LIKE '%$design%'
+
+OR upload_date < '$date' AND published = '$flag'
+AND tags_ru LIKE '%$requestHashTags[$i]%'
 AND colors LIKE '%$colors'
 AND shape LIKE '%$shape%'
 AND design LIKE '%$design%'
@@ -24,7 +32,7 @@ ORDER BY id DESC
 LIMIT $limit
 OFFSET $offset
 ");
-    $count = count(pg_fetch_all(pg_query($connection, "SELECT * FROM manicure WHERE published = '$flag' AND tags LIKE '%$requestHashTags[$i]%' AND colors LIKE '%$colors' AND shape LIKE '%$shape%' AND design LIKE '%$design%'")));
+    $count = count(pg_fetch_all(pg_query($connection, "SELECT * FROM manicure WHERE upload_date < '$date' AND published = '$flag' AND tags LIKE '%$requestHashTags[$i]%' AND colors LIKE '%$colors' AND shape LIKE '%$shape%' AND design LIKE '%$design%' OR upload_date < '$date' AND published = '$flag' AND tags LIKE '%$requestHashTags[$i]%' AND colors LIKE '%$colors' AND shape LIKE '%$shape%' AND design LIKE '%$design%'")));
     while ($row = pg_fetch_row($result)) {
         $profile = pg_query($connection, "SELECT  photo, first_name, last_name FROM profiles WHERE id='$row[1]'");
         $profileRow = pg_fetch_row($profile);
@@ -34,6 +42,7 @@ OFFSET $offset
             ',"authorName":"' . $profileRow[1] . ' ' . $profileRow[2] . '"' .
             ',"authorPhoto":"' . $profileRow[0] . '"' .
             ',"tags":"' . $row[2] . '"' .
+            ',"tagsRu":"' . $row[20] . '"' .
             ',"shape":"' . $row[3] . '"' .
             ',"design":"' . $row[4] . '"' .
             ',"colors":"' . $row[5] . '"' .

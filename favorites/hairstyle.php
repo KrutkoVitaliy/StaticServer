@@ -29,6 +29,7 @@ OFFSET $offset
             ',"authorName":"' . $profileRow[1] . ' ' . $profileRow[2] . '"' .
             ',"authorPhoto":"' . $profileRow[0] . '"' .
             ',"tags":"' . $row[2] . '"' .
+            ',"tagsRu":"' . $row[21] . '"' .
             ',"hairstyleType":"' . $row[3] . '"' .
             ',"screen0":"' . $row[4] . '"' .
             ',"screen1":"' . $row[5] . '"' .

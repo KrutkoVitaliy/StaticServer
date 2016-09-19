@@ -35,6 +35,7 @@ OFFSET $offset
             ',"occasion":"' . $row[6] . '"' .
             ',"difficult":"' . $row[7] . '"' .
             ',"tags":"' . $row[8] . '"' .
+            ',"tagsRu":"' . $row[21] . '"' .
             ',"published":"' . $row[9] . '"' .
             ',"screen0":"' . $row[10] . '"' .
             ',"screen1":"' . $row[11] . '"' .

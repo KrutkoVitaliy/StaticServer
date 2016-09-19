@@ -9,6 +9,8 @@ $flag = "t";
 $limit = 100;
 $offset = $position * 100 - 100;
 
+$date = date("dmy") . date("His");
+
 $requestHashTags = explode(",", $request);
 $requestHairstyle_type = explode(",", $hairstyle_type);
 print "[";
@@ -16,8 +18,14 @@ for ($i = 0; $i < count($requestHashTags); $i++) {
     $result = pg_query($connection, "
 SELECT *
 FROM hairstyle
-WHERE published = '$flag'
+WHERE upload_date < '$date' AND published = '$flag'
 AND tags LIKE '%$requestHashTags[$i]%'
+AND hlength LIKE '%$hairstyle_length%'
+AND htype LIKE '%$hairstyle_type%'
+AND hfor LIKE '%$hairstyle_for%'
+
+OR upload_date < '$date' AND published = '$flag'
+AND tags_ru LIKE '%$requestHashTags[$i]%'
 AND hlength LIKE '%$hairstyle_length%'
 AND htype LIKE '%$hairstyle_type%'
 AND hfor LIKE '%$hairstyle_for%'
@@ -25,7 +33,7 @@ ORDER BY id DESC
 LIMIT $limit
 OFFSET $offset
 ");
-    $count = count(pg_fetch_all(pg_query($connection, "SELECT * FROM hairstyle WHERE published = '$flag' AND tags LIKE '%$requestHashTags[$i]%' AND hlength LIKE '%$hairstyle_length%' AND htype LIKE '%$hairstyle_type%' AND hfor LIKE '%$hairstyle_for%'")));
+    $count = count(pg_fetch_all(pg_query($connection, "SELECT * FROM hairstyle WHERE upload_date < '$date' AND published = '$flag' AND tags LIKE '%$requestHashTags[$i]%' AND hlength LIKE '%$hairstyle_length%' AND htype LIKE '%$hairstyle_type%' AND hfor LIKE '%$hairstyle_for%' OR  upload_date < '$date' AND published = '$flag' AND tags_ru LIKE '%$requestHashTags[$i]%' AND hlength LIKE '%$hairstyle_length%' AND htype LIKE '%$hairstyle_type%' AND hfor LIKE '%$hairstyle_for%'")));
     while ($row = pg_fetch_row($result)) {
         $profile = pg_query($connection, "SELECT photo, first_name, last_name FROM profiles WHERE id='$row[1]'");
         $profileRow = pg_fetch_row($profile);
@@ -35,6 +43,7 @@ OFFSET $offset
             ',"authorName":"' . $profileRow[1] . ' ' . $profileRow[2] . '"' .
             ',"authorPhoto":"' . $profileRow[0] . '"' .
             ',"tags":"' . $row[2] . '"' .
+            ',"tagsRu":"' . $row[21] . '"' .
             ',"hairstyleType":"' . $row[3] . '"' .
             ',"screen0":"' . $row[4] . '"' .
             ',"screen1":"' . $row[5] . '"' .

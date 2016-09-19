@@ -23,6 +23,7 @@ while (true) {
                 ',"authorPhoto":"' . $profileResult[0] . '"' .
                 ',"authorName":"' . $profileResult[1] . " " . $profileResult[2] . '"' .
                 ',"tags":"' . $row[2] . '"' .
+                ',"tagsRu":"' . $row[20] . '"' .
                 ',"shape":"' . $row[3] . '"' .
                 ',"design":"' . $row[4] . '"' .
                 ',"colors":"' . $row[5] . '"' .

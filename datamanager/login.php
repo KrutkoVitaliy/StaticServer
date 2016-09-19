@@ -6,7 +6,7 @@ $password = $_POST['password'];
 $stats = pg_query($connection, "SELECT * FROM moderate WHERE mname='$login' AND mpassword='$password'");
 $row = pg_fetch_row($stats);
 if($row) {
-    print "<html><head><meta http-equiv='refresh' content='0;URL=manicure.php?mid=$row[1]'></head></html>";
+    print "<html><head><meta http-equiv='refresh' content='0;URL=makeup.php?mid=$row[1]'></head></html>";
 } else {
     print "<html><head><meta http-equiv='refresh' content='0;URL=index.php'></head></html>";
 }

@@ -4198,20 +4198,34 @@ $deleting = array(
 $connection = pg_connect("host=195.88.209.17 port=5432 dbname=makeup user=postgres password=12345_Vet");
 $result = pg_query($connection, "SELECT tags,id FROM manicure WHERE tags NOT LIKE ''");
 while ($row = pg_fetch_row($result)) {
-    $ru = $row[0];
-    $en = $row[0];
-    for ($i = 0; $i < count($deleting); $i++) {
-        print "to delete<br>";
-        //$ru = str_replace($eng[$i], "", $en);
-    }
-    for ($i = 0; $i < count($eng); $i++) {
-        $ru = str_replace($eng[$i], $rus[$i], $ru);
-    }
-    print$row[0] . "-" . $ru . "<br>";
+    $ru = "";
+    $tempArrayEn = explode(",", $row[0]);
 
-    $query = pg_query($connection, "UPDATE manicure SET tags ='$en',tags_ru='$ru' WHERE id='$row[1]'");
+    for ($i = 0; $i < count($tempArrayEn); $i++) {
+        for ($j = 0; $j < count($deleting); $j++) {
+            if (strpos($tempArrayEn[$i], $deleting[$j])) {
+                $tempArrayEn[$i] = "";
+                //$tempArrayEn[$i] = $rus[$j];
+            }
+        }
+        for ($j = 0; $j < count($eng); $j++) {
+            if (strpos($tempArrayEn[$i], $eng[$j])) {
+                $tempArrayEn[$i] = "";
+                $tempArrayEn[$i] = $rus[$j];
+            }
+        }
+        while(strpos($ru, ",,")){
+            $ru = str_replace(",,", ",", $ru);
+        }
+        $ru = $ru . $tempArrayEn[$i] . ",";
+    }
+
+    $query = pg_query($connection, "UPDATE manicure SET tags_ru='$ru' WHERE id='$row[1]'");
     if ($query) {
         print "+++++++++++++++<br>";
+        print $row[0] . "<br>";
+        print $ru . "<br>";
+        $ru = "";
     }
 }
 ?>

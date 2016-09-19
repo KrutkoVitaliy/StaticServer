@@ -21,7 +21,7 @@ while (true) {
             $str = $str .
                 '{"id":' . $row[0] .
                 ',"authorPhoto":"' . $profileResult[0] . '"' . ',"authorName":"' . $profileResult[1] . " " . $profileResult[2] . '"' .
-                ',"tags":"' . $row[2] . '"' . ',"hairstyleType":"' . $row[3] . '"' . ',"screen0":"' . $row[4] . '"' .
+                ',"tags":"' . $row[2] . '"' . ',"tagsRu":"' . $row[21] . '"' . ',"hairstyleType":"' . $row[3] . '"' . ',"screen0":"' . $row[4] . '"' .
                 ',"screen1":"' . $row[5] . '"' . ',"screen2":"' . $row[6] . '"' . ',"screen3":"' . $row[7] . '"' .
                 ',"screen4":"' . $row[8] . '"' . ',"screen5":"' . $row[9] . '"' . ',"screen6":"' . $row[10] . '"' .
                 ',"screen7":"' . $row[11] . '"' . ',"screen8":"' . $row[12] . '"' . ',"screen9":"' . $row[13] . '"' .
