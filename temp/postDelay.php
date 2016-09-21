@@ -4,7 +4,7 @@ $day = 1;
 $month = "_08";
 $year = 16;
 $hour = 0;
-$minute = -15;
+$minute = -20;
 $second = 0;
 $currentYear = date("y");
 $isLeap = false;
@@ -15,11 +15,11 @@ for ($i = 16; $i < 160; $i += 4) {
 }
 
 $connection = pg_connect("host=195.88.209.17 port=5432 dbname=makeup user=postgres password=12345_Vet");
-$result = pg_query($connection, "SELECT upload_date,id FROM hairstyle WHERE published = 't' ORDER BY id");
+$result = pg_query($connection, "SELECT upload_date,id FROM manicure WHERE published = 't' ORDER BY id");
 while ($row = pg_fetch_row($result)) {
 
-    if ($minute < 45) {
-        $minute = $minute + 15;
+    if ($minute < 40) {
+        $minute = $minute + 20;
     } else {
         $minute = 0;
         if ($hour < 23) {
@@ -161,10 +161,10 @@ while ($row = pg_fetch_row($result)) {
     //print $endDay . "-day " . $endMonth . "-month " . $year . "-year " . $endHour . "-hour " . $endMinute . "-minute 00-second<br>";
     $endDate = $endDay . $endMonth . $year . $endHour . $endMinute . "00";
 
-    $query = pg_query($connection, "UPDATE hairstyle SET upload_date='$endDate' WHERE id='$row[1]'");
+    /*$query = pg_query($connection, "UPDATE manicure SET upload_date='$endDate' WHERE id='$row[1]'");
     if($query)
         print "+++";
     else
-        print "---";
+        print "---";*/
     print $endDate."<br>";
 }

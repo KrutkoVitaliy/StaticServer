@@ -5,14 +5,15 @@ $flag = "t";
 $i = 0;
 $j = 0;
 while (true) {
-    $count = pg_query($connection, "SELECT * FROM makeup WHERE published LIKE '%$flag%'");
+    $date = date("dmy") . date("His");
+    $count = pg_query($connection, "SELECT * FROM makeup WHERE published LIKE '%$flag%' AND upload_date < '$date'");
     $countArray = pg_fetch_all($count);
     $rowCount = (((count($countArray) - (count($countArray) % 100)) / 100) + 1);
     $str = "";
     if ($i < $rowCount) {
         $i++;
         $offset = $i * 100 - 100;
-        $manicures = pg_query($connection, "SELECT * FROM makeup WHERE published LIKE '%$flag%' ORDER BY id DESC LIMIT $limit OFFSET $offset");
+        $manicures = pg_query($connection, "SELECT * FROM makeup WHERE published LIKE '%$flag%' AND upload_date < '$date' ORDER BY id DESC LIMIT $limit OFFSET $offset");
 
         while ($row = pg_fetch_row($manicures)) {
             $sid = $row[1];

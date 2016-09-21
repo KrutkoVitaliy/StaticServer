@@ -4,15 +4,17 @@ $limit = 100;
 $flag = "t";
 $i = 0;
 $j = 0;
+
 while (true) {
-    $count = pg_query($connection, "SELECT * FROM hairstyle WHERE published LIKE '%$flag%'");
+    $date = date("dmy") . date("His");
+    $count = pg_query($connection, "SELECT * FROM hairstyle WHERE published LIKE '%$flag%' AND upload_date < '$date'");
     $countArray = pg_fetch_all($count);
     $rowCount = (((count($countArray) - (count($countArray) % 100)) / 100) + 1);
     $str = "";
     if ($i < $rowCount) {
         $i++;
         $offset = $i * 100 - 100;
-        $manicures = pg_query($connection, "SELECT * FROM hairstyle WHERE published LIKE '%$flag%' ORDER BY id DESC LIMIT $limit OFFSET $offset");
+        $manicures = pg_query($connection, "SELECT * FROM hairstyle WHERE published LIKE '%$flag%' AND upload_date < '$date' ORDER BY id DESC LIMIT $limit OFFSET $offset");
 
         while ($row = pg_fetch_row($manicures)) {
             $sid = $row[1];
@@ -31,14 +33,15 @@ while (true) {
         $str = substr($str, 0, -1);
 
         file_put_contents("/var/www/html/app/static/hairstyle" . $i . ".html", "[" . $str . "]");
-        file_put_contents("/var/www/html/app/static/log.out", "Manicure - Обновлено " . $i . " раз из " . $rowCount . "\n", FILE_APPEND);
+        file_put_contents("/var/www/html/app/static/log.out", "Hairstyle - Обновлено " . $i . " раз из " . $rowCount . "\n", FILE_APPEND);
         $str = "";
     } else {
-        file_put_contents("/var/www/html/app/static/log.out", "Manicure - Нечего обновлять \n", FILE_APPEND);
+        file_put_contents("/var/www/html/app/static/log.out", "Hairstyle - Нечего обновлять \n", FILE_APPEND);
         $s++;
         if ($s > 10) {
             usleep(15000000);
             $i = $i - 1;
+            $s = 0;
         }
     }
 }
