@@ -1,2 +1,1 @@
-cd \
-pscp.exe -P 11616 -pw 12345_Vet -r "C:\PhpstormProjects\ManicureLoader\temp" remote@195.88.209.17:/var/www/html
+pscp.exe -P 11616 -pw 12345_Vet -r "D:\PHP\StaticServer\temp" remote@195.88.209.17:/var/www/html
