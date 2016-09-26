@@ -161,10 +161,10 @@ while ($row = pg_fetch_row($result)) {
     //print $endDay . "-day " . $endMonth . "-month " . $year . "-year " . $endHour . "-hour " . $endMinute . "-minute 00-second<br>";
     $endDate = $endDay . $endMonth . $year . $endHour . $endMinute . "00";
 
-    /*$query = pg_query($connection, "UPDATE manicure SET upload_date='$endDate' WHERE id='$row[1]'");
+    $query = pg_query($connection, "UPDATE manicure SET upload_date='$endDate' WHERE id='$row[1]'");
     if($query)
         print "+++";
     else
-        print "---";*/
+        print "---";
     print $endDate."<br>";
 }

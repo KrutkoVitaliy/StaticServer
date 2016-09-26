@@ -2,7 +2,7 @@
 $connection = pg_connect("host=195.88.209.17 port=5432 dbname=makeup user=postgres password=12345_Vet");
 $city = $_GET['city'];
 $skill = $_GET['skill'];
-$search = pg_query($connection, "SELECT * FROM profiles WHERE city = '$city' ORDER BY id");
+$search = pg_query($connection, "SELECT * FROM profiles WHERE city ILIKE '%$city%' ORDER BY id");
 $str = "";
 while ($output = pg_fetch_row($search)) {
     if ($output[9] != "") {
