@@ -1,7 +1,18 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
 <?php
-/**
- * Created by PhpStorm.
- * User: Виталий
- * Date: 22.09.2016
- * Time: 10:50
- */
+print $_POST['city'] . "<br>";
+var_dump($_POST['category'])."<br>";
+print $_POST['name'] . "<br>";
+print $_POST['lastname'] . "<br>";
+print $_POST['email'] . "<br>";
+print $_POST['password'] . "<br>";
+print $_POST['vpassword'] . "<br>";
+?>
+
+</body>
+</html>

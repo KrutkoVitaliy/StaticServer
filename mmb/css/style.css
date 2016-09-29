@@ -1,7 +1,7 @@
 html, body {
     width: 100%;
     height: 100%;
-    background-color: #e4e5e8;
+    background-color: #f1f2f5;
     overflow: hidden;
 }
 table {
@@ -18,6 +18,12 @@ table {
     -webkit-border-radius:2px;
     -moz-border-radius:2px;
     border-radius:2px;
+}
+.categoryCheck {
+    font-family: Arial;
+    font-size: 16px;
+    font-weight: bold;
+    color: #505155;
 }
 input::-webkit-input-placeholder {
     color: #78797d;

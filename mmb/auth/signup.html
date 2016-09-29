@@ -11,15 +11,45 @@
         <td align="center" valign="middle">
             <form>
                 <input size="30" class="signup_form" type="text" name="city" placeholder="City" required><br><br>
-                <input class="signup_form" type="checkbox" name="category[]" placeholder="Manicure">
-                <input type="checkbox" name="category[]" placeholder="Makeup">
-                <input type="checkbox" name="category[]" placeholder="Hairstyles">
-                <select name="category" class="signup_form" required>
-                    <option selected value=""><b>Select category</b></option>
-                    <option value="maniure">Manicure</option>
-                    <option value="makeup">Makeup</option>
-                    <option value="hairstyles">Hairstyles</option>
-                </select><br><br>
+
+                <table style="width: 30%;">
+                    <tr>
+                        <td width="10%" align="center" class="categoryCheck">
+                            <img src="../images/manicure.png" height="48" width="48"/>
+                        </td>
+
+                        <td width="10%" align="center" class="categoryCheck">
+                            <img src="../images/makeup.png" height="48" width="48"/>
+                        </td>
+                        <td width="10%" align="center" class="categoryCheck">
+                            <img src="../images/hairstyle.png" height="48" width="48"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="10%" align="center" class="categoryCheck">
+                            Manicure
+                        </td>
+                        <td width="10%" align="center" class="categoryCheck">
+                            Makeup
+                        </td>
+                        <td width="10%" align="center" class="categoryCheck">
+                            Hairstyles
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="10%" align="center">
+                            <input type="checkbox" name="category[]">
+                        </td>
+                        <td width="10%" align="center">
+                            <input type="checkbox" name="category[]">
+                        </td>
+                        <td width="10%" align="center">
+                            <input type="checkbox" name="category[]">
+                        </td>
+                    </tr>
+                </table>
+
+                <br>
                 <input class="signup_form" id="toSecondStep" type="submit" name="submit" value="Next step">
             </form>
         </td>
