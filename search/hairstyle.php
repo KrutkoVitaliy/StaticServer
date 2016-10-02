@@ -18,13 +18,13 @@ for ($i = 0; $i < count($requestHashTags); $i++) {
     $result = pg_query($connection, "
 SELECT *
 FROM hairstyle
-WHERE upload_date < '$date' AND published = '$flag'
+WHERE published = '$flag'
 AND tags LIKE '%$requestHashTags[$i]%'
 AND hlength LIKE '%$hairstyle_length%'
 AND htype LIKE '%$hairstyle_type%'
 AND hfor LIKE '%$hairstyle_for%'
 
-OR upload_date < '$date' AND published = '$flag'
+OR published = '$flag'
 AND tags_ru LIKE '%$requestHashTags[$i]%'
 AND hlength LIKE '%$hairstyle_length%'
 AND htype LIKE '%$hairstyle_type%'
@@ -33,7 +33,22 @@ ORDER BY id DESC
 LIMIT $limit
 OFFSET $offset
 ");
-    $count = count(pg_fetch_all(pg_query($connection, "SELECT * FROM hairstyle WHERE upload_date < '$date' AND published = '$flag' AND tags LIKE '%$requestHashTags[$i]%' AND hlength LIKE '%$hairstyle_length%' AND htype LIKE '%$hairstyle_type%' AND hfor LIKE '%$hairstyle_for%' OR  upload_date < '$date' AND published = '$flag' AND tags_ru LIKE '%$requestHashTags[$i]%' AND hlength LIKE '%$hairstyle_length%' AND htype LIKE '%$hairstyle_type%' AND hfor LIKE '%$hairstyle_for%'")));
+    $getCount = pg_query($connection, "
+SELECT *
+FROM manicure
+WHERE published = '$flag'
+AND tags LIKE '%$requestHashTags[$i]%'
+AND hlength LIKE '%$hairstyle_length%'
+AND htype LIKE '%$hairstyle_type%'
+AND hfor LIKE '%$hairstyle_for%'
+
+OR published = '$flag'
+AND tags_ru LIKE '%$requestHashTags[$i]%'
+AND hlength LIKE '%$hairstyle_length%'
+AND htype LIKE '%$hairstyle_type%'
+AND hfor LIKE '%$hairstyle_for%'
+");
+    $count = count(pg_fetch_all($getCount));
     while ($row = pg_fetch_row($result)) {
         $profile = pg_query($connection, "SELECT photo, first_name, last_name FROM profiles WHERE id='$row[1]'");
         $profileRow = pg_fetch_row($profile);
@@ -59,6 +74,9 @@ OFFSET $offset
             ',"uploadDate":"' . $row[15] . '"' .
             ',"length":"' . $row[18] . '"' . ',"type":"' . $row[19] . '"' . ',"for":"' . $row[20] . '"' .
             ',"published":"' . $row[16] . '"},';
+        if ($row[15] == $date) {
+            break;
+        }
     }
 }
 print "]";
