@@ -15,7 +15,7 @@ for ($i = 16; $i < 160; $i += 4) {
 }
 
 $connection = pg_connect("host=195.88.209.17 port=5432 dbname=makeup user=postgres password=12345_Vet");
-$result = pg_query($connection, "SELECT upload_date,id FROM manicure WHERE published = 't' ORDER BY id");
+$result = pg_query($connection, "SELECT upload_date,id FROM makeup WHERE published = 't' ORDER BY id");
 while ($row = pg_fetch_row($result)) {
 
     if ($minute < 40) {
@@ -161,7 +161,7 @@ while ($row = pg_fetch_row($result)) {
     //print $endDay . "-day " . $endMonth . "-month " . $year . "-year " . $endHour . "-hour " . $endMinute . "-minute 00-second<br>";
     $endDate = $endDay . $endMonth . $year . $endHour . $endMinute . "00";
 
-    $query = pg_query($connection, "UPDATE manicure SET upload_date='$endDate' WHERE id='$row[1]'");
+    $query = pg_query($connection, "UPDATE makeup SET upload_date='$endDate' WHERE id='$row[1]'");
     if($query)
         print "+++";
     else

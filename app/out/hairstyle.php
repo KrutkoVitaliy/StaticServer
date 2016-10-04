@@ -7,14 +7,14 @@ $j = 0;
 
 while (true) {
     $date = date("dmy") . date("His");
-    $count = pg_query($connection, "SELECT * FROM hairstyle WHERE published LIKE '%$flag%' AND upload_date < '$date'");
+    $count = pg_query($connection, "SELECT * FROM hairstyle WHERE published LIKE '%$flag%'");
     $countArray = pg_fetch_all($count);
     $rowCount = (((count($countArray) - (count($countArray) % 100)) / 100) + 1);
     $str = "";
     if ($i < $rowCount) {
         $i++;
         $offset = $i * 100 - 100;
-        $manicures = pg_query($connection, "SELECT * FROM hairstyle WHERE published LIKE '%$flag%' AND upload_date < '$date' ORDER BY id DESC LIMIT $limit OFFSET $offset");
+        $manicures = pg_query($connection, "SELECT * FROM hairstyle WHERE published LIKE '%$flag%' ORDER BY id DESC LIMIT $limit OFFSET $offset");
 
         while ($row = pg_fetch_row($manicures)) {
             $sid = $row[1];
@@ -40,7 +40,7 @@ while (true) {
         $s++;
         if ($s > 10) {
             usleep(15000000);
-            $i = $i - 1;
+            $i --;
             $s = 0;
         }
     }

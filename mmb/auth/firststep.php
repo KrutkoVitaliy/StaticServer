@@ -7,7 +7,7 @@
 <body>
 <table>
     <tr>
-        <td align="center" valign="top">
+        <td align="center" valign="middle">
             <div style="font-family: Arial; color:#666666;">
                 <p><b><h2>Хотите получать больше клиентов прямо сейчас?</h2></b></p>
                 <p>3 простых шага помогут вам сделать это!</p>
