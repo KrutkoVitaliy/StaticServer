@@ -43,6 +43,11 @@
                 <div<?php if ($_GET['cat'] == view_lips) print " style='color:#43A047;'"; ?>>Песочница</div>
             </a>
         </td>
+        <td align="center" width="20%">
+            <a href="index.php?cat=trends">
+                <div<?php if ($_GET['cat'] == lips) print " style='color:#43A047;'"; ?>>Тренды</div>
+            </a><br>
+        </td>
     </tr>
 </table>
 </body>

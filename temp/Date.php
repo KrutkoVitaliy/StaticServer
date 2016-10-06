@@ -1,3 +1,3 @@
 <?php
-$date = date("dmy").date("His");
-print $date;
+$date = time()+25200;
+print date('dmyHis', $date);

@@ -29,6 +29,9 @@
                 case "lips":
                     include("includes/lips.php");
                     break;
+                case "trends":
+                    include("includes/trend.php");
+                    break;
                 case "view_manicure":
                     include("viewers/manicure.php");
                     break;

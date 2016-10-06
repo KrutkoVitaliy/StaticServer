@@ -66,9 +66,9 @@ if (isset($_GET['services']) AND isset($_GET['service_places']) AND isset($_GET[
                 <input type="hidden" name="service_places" value="<?php print $servicePlaceStr; ?>">
                 <input type="hidden" name="costs" value="<?php print $costStr; ?>">
                 <div style="font-family: Arial; color:#666666;">
-                    <input type="checkbox" name="policy"/>&nbsp;&nbsp;&nbsp;С <a
+                    Нажимая на кнопку "Зарегистрироваться" вы соглашаетесь<br>с <a
                         style="color:#336699; text-decoration: none;" href="">Политикой
-                        конфиденциальности</a> ознакомлен(а)<br><br>
+                        конфиденциальности</a><br><br>
                 </div>
                 <input id="signup" class="signup_form" type="submit" name="submit"
                        value="  Зарегистрироваться   " style="font-weight: bold">

@@ -8,6 +8,9 @@
 <body>
 <?php
 session_start();
+if(empty($_SESSION['email']) OR empty($_SESSION['email'])){
+    print "<html><head><meta http-equiv='Refresh' content='0;URL=../auth/index.php'></head></html>";
+}
 $email = "" . $_SESSION['email'];
 $password = "" . $_SESSION['password'];
 $connection = pg_connect("host=195.88.209.17 port=5432 dbname=makeup user=postgres password=12345_Vet");

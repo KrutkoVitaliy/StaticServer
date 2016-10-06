@@ -5,15 +5,15 @@ $flag = "t";
 $i = 0;
 $j = 0;
 while (true) {
-    $date = date("dmy") . date("His");
-    $count = pg_query($connection, "SELECT * FROM manicure WHERE published LIKE '%$flag%'");
+    $date = time();
+    $count = pg_query($connection, "SELECT * FROM manicure WHERE published LIKE '%$flag%' AND upload_date < '$date'");
     $countArray = pg_fetch_all($count);
     $rowCount = (((count($countArray) - (count($countArray) % 100)) / 100) + 1);
     $str = "";
     if ($i < $rowCount) {
         $i++;
         $offset = $i * 100 - 100;
-        $manicures = pg_query($connection, "SELECT * FROM manicure WHERE published LIKE '%$flag%' ORDER BY id DESC LIMIT $limit OFFSET $offset");
+        $manicures = pg_query($connection, "SELECT * FROM manicure WHERE published LIKE '%$flag%' AND upload_date < '$date' ORDER BY id DESC LIMIT $limit OFFSET $offset");
 
         while ($row = pg_fetch_row($manicures)) {
             $sid = $row[1];
@@ -40,7 +40,7 @@ while (true) {
                 ',"screen9":"' . $row[15] . '"' .
                 ',"published":"' . $row[16] . '"' .
                 ',"likes":"' . $row[17] . '"' .
-                ',"uploadDate":"' . $row[18] . '"},';
+                ',"uploadDate":"' . date('dmyHis', $row[18]+25200) . '"},';
         }
         $str = substr($str, 0, -1);
 

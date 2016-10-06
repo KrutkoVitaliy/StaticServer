@@ -4,17 +4,16 @@ $limit = 100;
 $flag = "t";
 $i = 0;
 $j = 0;
-
 while (true) {
-    $date = date("dmy") . date("His");
-    $count = pg_query($connection, "SELECT * FROM hairstyle WHERE published LIKE '%$flag%'");
+    $date = time();
+    $count = pg_query($connection, "SELECT * FROM hairstyle WHERE published LIKE '%$flag%' AND upload_date < '$date'");
     $countArray = pg_fetch_all($count);
     $rowCount = (((count($countArray) - (count($countArray) % 100)) / 100) + 1);
     $str = "";
     if ($i < $rowCount) {
         $i++;
         $offset = $i * 100 - 100;
-        $manicures = pg_query($connection, "SELECT * FROM hairstyle WHERE published LIKE '%$flag%' ORDER BY id DESC LIMIT $limit OFFSET $offset");
+        $manicures = pg_query($connection, "SELECT * FROM hairstyle WHERE published LIKE '%$flag%' AND upload_date < '$date' ORDER BY id DESC LIMIT $limit OFFSET $offset");
 
         while ($row = pg_fetch_row($manicures)) {
             $sid = $row[1];
@@ -28,7 +27,7 @@ while (true) {
                 ',"screen4":"' . $row[8] . '"' . ',"screen5":"' . $row[9] . '"' . ',"screen6":"' . $row[10] . '"' .
                 ',"screen7":"' . $row[11] . '"' . ',"screen8":"' . $row[12] . '"' . ',"screen9":"' . $row[13] . '"' .
                 ',"length":"' . $row[18] . '"' . ',"type":"' . $row[19] . '"' . ',"for":"' . $row[20] . '"' .
-                ',"likes":"' . $row[14] . '"' . ',"uploadDate":"' . $row[15] . '"' . ',"published":"' . $row[16] . '"},';
+                ',"likes":"' . $row[14] . '"' . ',"uploadDate":"' . date('dmyHis', $row[15]+25200) . '"' . ',"published":"' . $row[16] . '"},';
         }
         $str = substr($str, 0, -1);
 
