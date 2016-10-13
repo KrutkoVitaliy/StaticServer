@@ -10,7 +10,7 @@ $flag = "t";
 $limit = 100;
 $offset = $position * 100 - 100;
 
-$date = date("dmy") . date("His");
+$date = time();
 
 $requestHashTags = explode(",", $request);
 print "[";
@@ -24,6 +24,7 @@ AND colors LIKE '%$colors%'
 AND eye_color LIKE '%$eyeColor%'
 AND difficult LIKE '%$difficult%'
 AND occasion LIKE '%$occasion%'
+AND upload_date < '$date'
 
 OR published = '$flag'
 AND tags_ru LIKE '%$requestHashTags[$i]%'
@@ -31,19 +32,21 @@ AND colors LIKE '%$colors%'
 AND eye_color LIKE '%$eyeColor%'
 AND difficult LIKE '%$difficult%'
 AND occasion LIKE '%$occasion%'
+AND upload_date < '$date'
 ORDER BY id DESC
 LIMIT $limit
 OFFSET $offset
 ");
     $getCount = pg_query($connection, "
 SELECT *
-FROM manicure
+FROM makeup
 WHERE published = '$flag'
 AND tags LIKE '%$requestHashTags[$i]%'
 AND colors LIKE '%$colors%'
 AND eye_color LIKE '%$eyeColor%'
 AND difficult LIKE '%$difficult%'
 AND occasion LIKE '%$occasion%'
+AND upload_date < '$date'
 
 OR published = '$flag'
 AND tags_ru LIKE '%$requestHashTags[$i]%'
@@ -51,6 +54,7 @@ AND colors LIKE '%$colors%'
 AND eye_color LIKE '%$eyeColor%'
 AND difficult LIKE '%$difficult%'
 AND occasion LIKE '%$occasion%'
+AND upload_date < '$date'
 ");
     $count = count(pg_fetch_all($getCount));
     while ($row = pg_fetch_row($result)) {
@@ -80,9 +84,6 @@ AND occasion LIKE '%$occasion%'
             ',"screen7":"' . $row[17] . '"' .
             ',"screen8":"' . $row[18] . '"' .
             ',"screen9":"' . $row[19] . '"},';
-        if ($row[3] == $date) {
-            break;
-        }
     }
 }
 print "]";

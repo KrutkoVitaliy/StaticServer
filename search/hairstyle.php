@@ -9,7 +9,7 @@ $flag = "t";
 $limit = 100;
 $offset = $position * 100 - 100;
 
-$date = date("dmy") . date("His");
+$date = time();
 
 $requestHashTags = explode(",", $request);
 $requestHairstyle_type = explode(",", $hairstyle_type);
@@ -23,30 +23,34 @@ AND tags LIKE '%$requestHashTags[$i]%'
 AND hlength LIKE '%$hairstyle_length%'
 AND htype LIKE '%$hairstyle_type%'
 AND hfor LIKE '%$hairstyle_for%'
+AND upload_date < '$date'
 
 OR published = '$flag'
 AND tags_ru LIKE '%$requestHashTags[$i]%'
 AND hlength LIKE '%$hairstyle_length%'
 AND htype LIKE '%$hairstyle_type%'
 AND hfor LIKE '%$hairstyle_for%'
+AND upload_date < '$date'
 ORDER BY id DESC
 LIMIT $limit
 OFFSET $offset
 ");
     $getCount = pg_query($connection, "
 SELECT *
-FROM manicure
+FROM hairstyle
 WHERE published = '$flag'
 AND tags LIKE '%$requestHashTags[$i]%'
 AND hlength LIKE '%$hairstyle_length%'
 AND htype LIKE '%$hairstyle_type%'
 AND hfor LIKE '%$hairstyle_for%'
+AND upload_date < '$date'
 
 OR published = '$flag'
 AND tags_ru LIKE '%$requestHashTags[$i]%'
 AND hlength LIKE '%$hairstyle_length%'
 AND htype LIKE '%$hairstyle_type%'
 AND hfor LIKE '%$hairstyle_for%'
+AND upload_date < '$date'
 ");
     $count = count(pg_fetch_all($getCount));
     while ($row = pg_fetch_row($result)) {
@@ -74,9 +78,6 @@ AND hfor LIKE '%$hairstyle_for%'
             ',"uploadDate":"' . $row[15] . '"' .
             ',"length":"' . $row[18] . '"' . ',"type":"' . $row[19] . '"' . ',"for":"' . $row[20] . '"' .
             ',"published":"' . $row[16] . '"},';
-        if ($row[15] == $date) {
-            break;
-        }
     }
 }
 print "]";

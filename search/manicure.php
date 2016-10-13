@@ -10,7 +10,7 @@ $flag = "t";
 $limit = 100;
 $offset = $position * 100 - 100;
 
-$date = date("dmy") . date("His");
+$date = time();
 
 $requestHashTags = explode(",", $request);
 print "[";
@@ -23,12 +23,14 @@ AND tags LIKE '%$requestHashTags[$i]%'
 AND colors LIKE '%$colors%'
 AND shape LIKE '%$shape%'
 AND design LIKE '%$design%'
+AND upload_date < '$date'
 
 OR published = '$flag'
 AND tags_ru LIKE '%$requestHashTags[$i]%'
 AND colors LIKE '%$colors%'
 AND shape LIKE '%$shape%'
 AND design LIKE '%$design%'
+AND upload_date < '$date'
 ORDER BY id DESC
 LIMIT $limit
 OFFSET $offset
@@ -38,16 +40,17 @@ SELECT *
 FROM manicure
 WHERE published = '$flag'
 AND tags LIKE '%$requestHashTags[$i]%'
-AND tags_ru LIKE '%$requestHashTags[$i]%'
 AND colors LIKE '%$colors%'
 AND shape LIKE '%$shape%'
 AND design LIKE '%$design%'
+AND upload_date < '$date'
 
 OR published = '$flag'
 AND tags_ru LIKE '%$requestHashTags[$i]%'
 AND colors LIKE '%$colors%'
 AND shape LIKE '%$shape%'
 AND design LIKE '%$design%'
+AND upload_date < '$date'
 ");
     $count = count(pg_fetch_all($getCount));
     while ($row = pg_fetch_row($result)) {
@@ -76,9 +79,6 @@ AND design LIKE '%$design%'
             ',"published":"' . $row[16] . '"' .
             ',"likes":"' . $row[17] . '"' .
             ',"uploadDate":"' . $row[18] . '"},';
-        if ($row[18] == $date) {
-            break;
-        }
     }
 }
 print "]";
