@@ -32,6 +32,9 @@ while (true) {
                 ',"tags":"' . $row[8] . '"' .
                 ',"tagsRu":"' . $row[21] . '"' .
                 ',"published":"' . $row[9] . '"' .
+                ',"dataType":"makeup"' .
+                ',"shape":""' .',"design":""' .
+                ',"length":""' . ',"type":""' . ',"for":""' .
                 ',"screen0":"' . $row[10] . '"' .
                 ',"screen1":"' . $row[11] . '"' .
                 ',"screen2":"' . $row[12] . '"' .
@@ -52,7 +55,7 @@ while (true) {
         file_put_contents("/var/www/html/app/static/log.out", "Makeup - Нечего обновлять\n", FILE_APPEND);
         $s++;
         if ($s > 10) {
-            usleep(15000000);
+            sleep(60);
             $i = 0;
         }
     }

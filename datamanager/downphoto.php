@@ -72,6 +72,18 @@ while ($row3 = pg_fetch_row($result3)) {
     print $row3[9]."_+_<br>";
 }*/
 
+
+$result3 = pg_query($connection, "SELECT screen0,screen1,screen2,screen3 FROM makeup WHERE published='t' AND eye_color='hazel'");
+while ($row3 = pg_fetch_row($result3)) {
+    $path = "/home/remote/hazel/";
+    download_remote_file("http://195.88.209.17/storage/images/" . $row3[0], $path . $row3[0]);
+    download_remote_file("http://195.88.209.17/storage/images/" . $row3[1], $path . $row3[9]);
+    download_remote_file("http://195.88.209.17/storage/images/" . $row3[2], $path . $row3[9]);
+    download_remote_file("http://195.88.209.17/storage/images/" . $row3[3], $path . $row3[9]);
+    print "+<br>";
+}
+
+
 function download_remote_file($file_url, $save_to)
 {
     $content = file_get_contents($file_url);

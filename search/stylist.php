@@ -4,7 +4,7 @@
     if(isset($_GET['city']) and $_GET['city']) $city = $_GET['city'];
     if(isset($_GET['skill']) and $_GET['skill']) $skill = $_GET['skill'];
 
-    $result = pg_query("SELECT * FROM profiles WHERE city LIKE '$city' AND skills LIKE '$skill'");
+    $result = pg_query("SELECT * FROM profiles WHERE city LIKE '%$city%' AND skills LIKE '%$skill%'");
     print "[";
     while($row = pg_fetch_row($result)) {
       print $str =

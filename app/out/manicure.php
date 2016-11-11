@@ -40,7 +40,9 @@ while (true) {
                 ',"screen9":"' . $row[15] . '"' .
                 ',"published":"' . $row[16] . '"' .
                 ',"likes":"' . $row[17] . '"' .
-                ',"uploadDate":"' . date('dmyHis', $row[18]+25200) . '"},';
+                ',"dataType":"manicure"' . ',"eyeColor":""' . ',"occasion":""' . ',"difficult":""' .
+                ',"length":""' . ',"type":""' . ',"for":""' .
+                ',"uploadDate":"' . date('dmyHis', $row[18] + 25200) . '"},';
         }
         $str = substr($str, 0, -1);
 
@@ -51,7 +53,7 @@ while (true) {
         file_put_contents("/var/www/html/app/static/log.out", "Manicure - Нечего обновлять \n", FILE_APPEND);
         $s++;
         if ($s > 10) {
-            usleep(15000000);
+            sleep(60);
             $i = 0;
         }
     }

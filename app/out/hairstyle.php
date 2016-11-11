@@ -27,6 +27,9 @@ while (true) {
                 ',"screen4":"' . $row[8] . '"' . ',"screen5":"' . $row[9] . '"' . ',"screen6":"' . $row[10] . '"' .
                 ',"screen7":"' . $row[11] . '"' . ',"screen8":"' . $row[12] . '"' . ',"screen9":"' . $row[13] . '"' .
                 ',"length":"' . $row[18] . '"' . ',"type":"' . $row[19] . '"' . ',"for":"' . $row[20] . '"' .
+                ',"dataType":"hairstyle"' .
+                ',"shape":""' .',"design":""' .
+                ',"colors":""' . ',"eyeColor":""' . ',"occasion":""' . ',"difficult":""' .
                 ',"likes":"' . $row[14] . '"' . ',"uploadDate":"' . date('dmyHis', $row[15]+25200) . '"' . ',"published":"' . $row[16] . '"},';
         }
         $str = substr($str, 0, -1);
@@ -38,7 +41,7 @@ while (true) {
         file_put_contents("/var/www/html/app/static/log.out", "Hairstyle - Нечего обновлять \n", FILE_APPEND);
         $s++;
         if ($s > 10) {
-            usleep(15000000);
+            sleep(60);
             $i = 0;
             $s = 0;
         }
