@@ -1,0 +1,140 @@
+html, body {
+    padding: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    background-color: #F1F1F1;
+}
+
+h1 {
+    font-family: "Arial Narrow", serif;
+    font-weight: 400;
+}
+
+a {
+    font-family: "Arial Narrow", serif;
+    font-weight: 400;
+}
+
+label {
+    font-family: "Arial Narrow", serif;
+    font-weight: 400;
+}
+
+.login_input {
+    background-image: url("../images/user_icon.png");
+    background-repeat: no-repeat; /*Убираем повтор изображения*/
+    background-position: 6px; /*Позиционируем*/
+    width: 100%;
+    height: 32px;
+    border-top: 1px solid #d6d7db;
+    border-left: 1px solid #d6d7db;
+    border-right: 1px solid #d6d7db;
+    border-bottom: 1px solid #bdbec2;
+    outline: none; /*убираем стандартную обводку браузера*/
+    -moz-border-radius: 3px; /*закругляем углы для Mozilla*/
+    -webkit-border-radius: 3px; /*закругляем углы для Chrome, Safari*/
+    border-radius: 3px; /*закругляем углы для остальных браузеров*/
+    padding-left: 28px; /*отступ слева от ввода, чтобы текст не был на картинке(выбирать по размеру картинки)*/
+    font-size: 16px; /*размер шрифта*/
+    font-family: "Arial Narrow", serif;
+}
+
+.pass_input {
+    background-image: url("../images/password_icon.png");
+    background-repeat: no-repeat; /*Убираем повтор изображения*/
+    background-position: 6px; /*Позиционируем*/
+    width: 100%;
+    height: 32px;
+    border-top: 1px solid #d6d7db;
+    border-left: 1px solid #d6d7db;
+    border-right: 1px solid #d6d7db;
+    border-bottom: 1px solid #bdbec2;
+    outline: none; /*убираем стандартную обводку браузера*/
+    -moz-border-radius: 3px; /*закругляем углы для Mozilla*/
+    -webkit-border-radius: 3px; /*закругляем углы для Chrome, Safari*/
+    border-radius: 3px; /*закругляем углы для остальных браузеров*/
+    padding-left: 28px; /*отступ слева от ввода, чтобы текст не был на картинке(выбирать по размеру картинки)*/
+    font-size: 16px; /*размер шрифта*/
+    font-family: "Arial Narrow", serif;
+}
+
+.checkbox_input {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    border: 1px solid #808080;
+    outline: none; /*убираем стандартную обводку браузера*/
+    -moz-border-radius: 3px; /*закругляем углы для Mozilla*/
+    -webkit-border-radius: 3px; /*закругляем углы для Chrome, Safari*/
+    border-radius: 3px; /*закругляем углы для остальных браузеров*/
+    padding-left: 28px; /*отступ слева от ввода, чтобы текст не был на картинке(выбирать по размеру картинки)*/
+    font-size: 16px; /*размер шрифта*/
+    font-family: "Arial Narrow", serif;
+}
+
+.btn {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 0;
+    text-shadow: 1px 1px 3px #1d596c;
+    -webkit-box-shadow: 0 2px 0 #1d596c;
+    -moz-box-shadow: 0 2px 0 #1d596c;
+    box-shadow: 0 2px 0 #1d596c;
+    font-family: "Arial Narrow", serif;
+    color: #ffffff;
+    font-size: 16px;
+    background: #349bb8;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: #1d596c;
+    text-decoration: none;
+}
+
+.block {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 0;
+    background-color: #FFFFFF;
+    border-top: 1px solid #d6d7db;
+    border-left: 1px solid #d6d7db;
+    border-right: 1px solid #d6d7db;
+    border-bottom: 1px solid #bdbec2;
+    -webkit-box-shadow: 0 2px 2px #C0C0C0;
+    -moz-box-shadow: 0 2px 2px #C0C0C0;
+    box-shadow: 0 2px 2px #C0C0C0;
+}
+
+.top_stats {
+    font-family: Calibri, serif;
+    font-size: 20px;
+    color: #808080;
+    text-decoration: none;
+}
+.stats {
+    font-family: Calibri, serif;
+    font-size: 16px;
+    color: #808080;
+    text-decoration: none;
+}
+
+#hint {
+    display: none;
+    margin: 15px;
+    float: left;
+    position: absolute;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid #C0C0C0;
+    background-color: #EEEEEE;
+    z-index: 100500;
+    color: #404040;
+    font-family: "Calibri", serif;
+    font-size: 15px;
+}
